@@ -1,0 +1,39 @@
+
+<div class="container">
+    <form #f='ngForm'(ngSubmit)='submit(f)'>
+      <div class="row">
+  
+        <div class="col">
+          
+             
+          <input id="fname" type="text"  placeholder="First Name"  ngModel #fname=ngModel name="fname" required >
+          <div *ngIf='fname.touched && !fname.value' class="invalid-feedback d-block">
+            First name required 
+          </div>
+          <input id="lname" type="text" name="lname" placeholder="Last Name"  ngModel #lname='ngModel' required >
+          <div *ngIf='lname.touched && !lname.value' class="invalid-feedback d-block">
+            Last name required 
+          </div>
+       
+          <input id="username" type="text" name="username" placeholder="Email" ngModel #username="ngModel" required >
+          <div *ngIf='username.touched && !username.value' class="alert alert-danger">
+            Email required 
+          </div>
+
+          <input type="password" name="password" placeholder="Password"  id="password" ngModel #password='ngModel' required minlength="6">
+       
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+            <div *ngIf="password.errors.required">
+                Password is required.</div>
+            <div *ngIf="password.errors.minlength">
+              Name must be at least 6 characters long.</div>
+          </div>
+
+          <button (click)='login(f.value)'   [ngClass]='{"btn btn-secondary btn-lg btn-block":!f.valid,"btn btn-primary":f.valid}' [disabled]="!f.valid" >Register & Login </button>
+          <a  (click)='back()' class="google btn"><i class="fa fa-google fa-fw">
+        </i> Back to login Page
+      </a>
+        </div>
+        
+      </div>
+    </form>
